@@ -8,4 +8,7 @@ def batch_norm(X, gamma, beta, moving_mean, moving_var, eps, momentum):
         x_hat = (X - moving_mean) / torch.sqrt(moving_var + eps)
     else:
         assert len(X.shape) in (2, 4)
+        if len(X.shape) == 2:
+            mean = X.mean(dim=0)
+            var = ((X - mean)**2).mean(dim=0)
 

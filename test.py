@@ -71,3 +71,9 @@ import cv2
 # # print(isinstance(may, Person))
 # # print(isinstance(may, Child))
 # # print(isinstance(peter, Person))
+
+
+X = torch.rand(4, 5, 6, 7)
+Y = torch.rand(4, 5)
+print(Y.mean(dim=(0, 1)))
+print(X.mean(dim=(0, 2, 3)))
