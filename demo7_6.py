@@ -25,7 +25,30 @@ class Residual(nn.Module):
         return F.relu(Y)
 
 
-blk = Residual(3, 6, use1x1conv=True, strides=2)
-X = torch.randn(4, 3, 6, 6)
-Y = blk(X)
-print(Y.shape)
+def resnet_block(input_channels, num_channels, num_residuals,
+                 first_block=False):
+    blk = []
+    for i in range(num_residuals):
+        if i == 0 and not first_block:  # and:两个条件都要满足. if not True则进入else; if not False则继续执行
+            blk.append(Residual(input_channels, num_channels,
+                                use_1x1conv=True, strides=2))
+        else:
+            blk.append(Residual(num_channels, num_channels))
+    return blk
+
+
+b1 = nn.Sequential(
+    nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3),
+    nn.BatchNorm2d(64), nn.ReLU(),
+    nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+)
+b2 = nn.Sequential(*resnet_block(64, 64, 2, first_block=True))
+b3 = nn.Sequential(*resnet_block(64, 128, 2))
+b4 = nn.Sequential(*resnet_block(128, 256, 2))
+b5 = nn.Sequential(*resnet_block(256, 512, 2))
+
+
+# blk = Residual(3, 6, use1x1conv=True, strides=2)
+# X = torch.randn(4, 3, 6, 6)
+# Y = blk(X)
+# print(Y.shape)

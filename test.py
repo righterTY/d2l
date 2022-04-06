@@ -65,15 +65,13 @@ import cv2
 #
 # may = Person('49', 'male')
 # peter = Child('18, 'man', 'Amy', 'Jason')
-# # mike = Baby('8', 'female', 'Amy1', 'jason1')
+# mike = Baby('8', 'female', 'Amy1', 'jason1')
 # print(peter.mather)
-# # print(mike.mather)
-# # print(isinstance(may, Person))
-# # print(isinstance(may, Child))
-# # print(isinstance(peter, Person))
+# print(mike.mather)
+# print(isinstance(may, Person))
+# print(isinstance(may, Child))
+# print(isinstance(peter, Person))
 
-
-X = torch.rand(4, 5, 6, 7)
-Y = torch.rand(4, 5)
-print(Y.mean(dim=(0, 1)))
-print(X.mean(dim=(0, 2, 3)))
+x = torch.rand(4, 3, 2, 2)
+y = torch.rand(4, 2, 2, 2)
+print(torch.cat((x, y), dim=1).shape)
