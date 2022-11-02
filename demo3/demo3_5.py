@@ -4,12 +4,13 @@ from torch.utils import data
 from torchvision import transforms
 from d2l import torch as d2l
 import matplotlib.pyplot as plt
+import os
 
 
 d2l.use_svg_display()
 trans = transforms.ToTensor()  # 通过ToTensor将图像数据从PLT类型转换为32位浮点数据格式，并除以255做归一化
-mnist_train = torchvision.datasets.FashionMNIST(root='./data', train=True, transform=trans, download=False)
-mnist_test = torchvision.datasets.FashionMNIST(root='./data', train=False, transform=trans, download=False)
+mnist_train = torchvision.datasets.FashionMNIST(root='../data', train=True, transform=trans, download=False)
+mnist_test = torchvision.datasets.FashionMNIST(root='../data', train=False, transform=trans, download=False)
 
 
 def get_fashion_mnist_labels(labels):  # @save
@@ -43,13 +44,13 @@ def get_dataloader_workers():  #@save
     return 4
 
 
-X, y = next(iter(data.DataLoader(mnist_train, batch_size=18)))
-show_images(X.reshape(18, 28, 28), 2, 9, titles=get_fashion_mnist_labels(y))
+# X, y = next(iter(data.DataLoader(mnist_train, batch_size=18)))
+# show_images(X.reshape(18, 28, 28), 2, 9, titles=get_fashion_mnist_labels(y))
 
 
-batch_size = 256
-train_iter = data.DataLoader(mnist_train, batch_size, shuffle=True,num_workers=get_dataloader_workers())  # 返回一个迭代器，每次取batch_size个数据
-timer = d2l.Timer()
-for X, y in train_iter:
-    continue
-print(f'{timer.stop():.2f} sec')
+# batch_size = 256
+# train_iter = data.DataLoader(mnist_train, batch_size, shuffle=True,num_workers=get_dataloader_workers())  # 返回一个迭代器，每次取batch_size个数据
+# timer = d2l.Timer()
+# for X, y in train_iter:
+#     continue
+# print(f'{timer.stop():.2f} sec')
