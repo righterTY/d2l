@@ -5,11 +5,11 @@ from torch.nn import functional as F
 
 
 class Residual(nn.Module):
-    def __init__(self, input_channels, num_channels, use1x1conv=False, strides=1):
+    def __init__(self, input_channels, num_channels, use_1x1conv=False, strides=1):
         super().__init__()
         self.conv1 = nn.Conv2d(input_channels, num_channels, kernel_size=3, padding=1, stride=strides)
         self.conv2 = nn.Conv2d(num_channels, num_channels, kernel_size=3, padding=1)
-        if use1x1conv:
+        if use_1x1conv:
             self.conv3 = nn.Conv2d(input_channels, num_channels, kernel_size=1, stride=strides)
         else:
             self.conv3 = None
@@ -47,8 +47,17 @@ b3 = nn.Sequential(*resnet_block(64, 128, 2))
 b4 = nn.Sequential(*resnet_block(128, 256, 2))
 b5 = nn.Sequential(*resnet_block(256, 512, 2))
 
+net = nn.Sequential(b1, b2, b3, b4, b5,
+                    nn.AdaptiveAvgPool2d((1, 1)),
+                    nn.Flatten(), nn.Linear(512, 10))
 
-# blk = Residual(3, 6, use1x1conv=True, strides=2)
+
+# blk = Residual(3, 6, use_1x1conv=True, strides=2)
 # X = torch.randn(4, 3, 6, 6)
 # Y = blk(X)
 # print(Y.shape)
+
+X = torch.rand(size=(1, 1, 224, 224))
+for layer in net:
+    X = layer(X)
+    print(layer.__class__.__name__,'output shape:\t', X.shape)
