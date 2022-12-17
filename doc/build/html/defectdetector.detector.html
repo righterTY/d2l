@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="Python" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>defectdetector.detector package &mdash; Polarization_Defect_Detection 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="defectdetector.detector.yolox package" href="defectdetector.detector.yolox.html" />
+    <link rel="prev" title="defectdetector.controller package" href="defectdetector.controller.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Polarization_Defect_Detection
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.html">defectdetector package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.camera.html">defectdetector.camera package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.controller.html">defectdetector.controller package</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">defectdetector.detector package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="defectdetector.detector.yolox.html">defectdetector.detector.yolox package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-defectdetector.detector.base">defectdetector.detector.base module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defectdetector.detector.base.Detector"><code class="docutils literal notranslate"><span class="pre">Detector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.base.Detector.detect"><code class="docutils literal notranslate"><span class="pre">Detector.detect()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#module-defectdetector.detector">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#defectdetector.detector.Detector"><code class="docutils literal notranslate"><span class="pre">Detector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.Detector.detect"><code class="docutils literal notranslate"><span class="pre">Detector.detect()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#defectdetector.detector.YoloxDetector"><code class="docutils literal notranslate"><span class="pre">YoloxDetector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.model"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.confidence"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.confidence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.nms"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.nms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.classes"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.backends"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.targets"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.model_net"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.detect"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.detect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.letterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.letterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.paint_chinese_opencv"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.paint_chinese_opencv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.unletterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.unletterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defectdetector.detector.YoloxDetector.vis"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.vis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.detector.yolox.html">defectdetector.detector.yolox package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.logger.html">defectdetector.logger package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.transforms.html">defectdetector.transforms package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.utils.html">defectdetector.utils package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Polarization_Defect_Detection</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="defectdetector.html">defectdetector package</a></li>
+      <li class="breadcrumb-item active">defectdetector.detector package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/defectdetector.detector.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="defectdetector-detector-package">
+<h1>defectdetector.detector package<a class="headerlink" href="#defectdetector-detector-package" title="Permalink to this heading"></a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="defectdetector.detector.yolox.html">defectdetector.detector.yolox package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="defectdetector.detector.yolox.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="defectdetector.detector.yolox.html#module-defectdetector.detector.yolox.inference">defectdetector.detector.yolox.inference module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector"><code class="docutils literal notranslate"><span class="pre">YoloxDetector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.model"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.confidence"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.confidence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.nms"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.nms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.classes"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.backends"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.targets"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.model_net"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.detect"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.detect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.letterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.letterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.paint_chinese_opencv"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.paint_chinese_opencv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.unletterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.unletterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.inference.YoloxDetector.vis"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.vis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="defectdetector.detector.yolox.html#module-defectdetector.detector.yolox.yolox">defectdetector.detector.yolox.yolox module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX"><code class="docutils literal notranslate"><span class="pre">YoloX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.generateAnchors"><code class="docutils literal notranslate"><span class="pre">YoloX.generateAnchors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.infer"><code class="docutils literal notranslate"><span class="pre">YoloX.infer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.name"><code class="docutils literal notranslate"><span class="pre">YoloX.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.postprocess"><code class="docutils literal notranslate"><span class="pre">YoloX.postprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.preprocess"><code class="docutils literal notranslate"><span class="pre">YoloX.preprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.setBackend"><code class="docutils literal notranslate"><span class="pre">YoloX.setBackend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.yolox.YoloX.setTarget"><code class="docutils literal notranslate"><span class="pre">YoloX.setTarget()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="defectdetector.detector.yolox.html#module-defectdetector.detector.yolox">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX"><code class="docutils literal notranslate"><span class="pre">YoloX</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.generateAnchors"><code class="docutils literal notranslate"><span class="pre">YoloX.generateAnchors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.infer"><code class="docutils literal notranslate"><span class="pre">YoloX.infer()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.name"><code class="docutils literal notranslate"><span class="pre">YoloX.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.postprocess"><code class="docutils literal notranslate"><span class="pre">YoloX.postprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.preprocess"><code class="docutils literal notranslate"><span class="pre">YoloX.preprocess()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.setBackend"><code class="docutils literal notranslate"><span class="pre">YoloX.setBackend()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX.setTarget"><code class="docutils literal notranslate"><span class="pre">YoloX.setTarget()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector"><code class="docutils literal notranslate"><span class="pre">YoloxDetector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.model"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.confidence"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.confidence</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.nms"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.nms</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.classes"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.backends"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.backends</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.targets"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.targets</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.model_net"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.model_net</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.detect"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.detect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.letterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.letterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.paint_chinese_opencv"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.paint_chinese_opencv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.unletterbox"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.unletterbox()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloxDetector.vis"><code class="docutils literal notranslate"><span class="pre">YoloxDetector.vis()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-defectdetector.detector.base">
+<span id="defectdetector-detector-base-module"></span><h2>defectdetector.detector.base module<a class="headerlink" href="#module-defectdetector.detector.base" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="defectdetector.detector.base.Detector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">defectdetector.detector.base.</span></span><span class="sig-name descname"><span class="pre">Detector</span></span><a class="headerlink" href="#defectdetector.detector.base.Detector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.base.Detector.detect">
+<span class="sig-name descname"><span class="pre">detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.base.Detector.detect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-defectdetector.detector">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-defectdetector.detector" title="Permalink to this heading"></a></h2>
+<p>此包用于定义缺陷检测算法</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="defectdetector.detector.Detector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">defectdetector.detector.</span></span><span class="sig-name descname"><span class="pre">Detector</span></span><a class="headerlink" href="#defectdetector.detector.Detector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.Detector.detect">
+<span class="sig-name descname"><span class="pre">detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.Detector.detect" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">defectdetector.detector.</span></span><span class="sig-name descname"><span class="pre">YoloxDetector</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#defectdetector.detector.base.Detector" title="defectdetector.detector.base.Detector"><code class="xref py py-class docutils literal notranslate"><span class="pre">Detector</span></code></a></p>
+<p>Get the detection results of Yolox and display the defect classification and score.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.model" title="Permalink to this definition"></a></dt>
+<dd><p>Path of the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.confidence">
+<span class="sig-name descname"><span class="pre">confidence</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.confidence" title="Permalink to this definition"></a></dt>
+<dd><p>A threshold used to filter boxes by score.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.nms">
+<span class="sig-name descname"><span class="pre">nms</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.nms" title="Permalink to this definition"></a></dt>
+<dd><p>A threshold used in non-maximum suppression.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.classes">
+<span class="sig-name descname"><span class="pre">classes</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.classes" title="Permalink to this definition"></a></dt>
+<dd><p>All categories of defects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.backends">
+<span class="sig-name descname"><span class="pre">backends</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.backends" title="Permalink to this definition"></a></dt>
+<dd><p>Specific computation backend supported by network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.targets" title="Permalink to this definition"></a></dt>
+<dd><p>Target identifier of the specific target device used for computations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.model_net">
+<span class="sig-name descname"><span class="pre">model_net</span></span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.model_net" title="Permalink to this definition"></a></dt>
+<dd><p>An instance of the Yolox class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="defectdetector.detector.yolox.html#defectdetector.detector.yolox.YoloX" title="defectdetector.detector.yolox.YoloX">yolox.YoloX</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.detect">
+<span class="sig-name descname"><span class="pre">detect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.detect" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input</strong> (<em>ndarray</em>) -- Input image.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Output image with defect information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>img(ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.letterbox">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">letterbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">srcimg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(640,</span> <span class="pre">640)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.letterbox" title="Permalink to this definition"></a></dt>
+<dd><p>Scale the image and get the scaling ratio.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>srcimg</strong> (<em>ndarray</em>) -- Input image.</p></li>
+<li><p><strong>target_size</strong> (<em>tuple</em>) -- Input Size.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Scaled image.
+ratio(float): Scaling ratio.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>padded_img(ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.paint_chinese_opencv">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">paint_chinese_opencv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">top</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textColor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">255,</span> <span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">textSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.paint_chinese_opencv" title="Permalink to this definition"></a></dt>
+<dd><p>Display and add Chinese characters on the image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>ndarray</em>) -- Images that need to add Chinese characters.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) -- Text to be added.</p></li>
+<li><p><strong>left</strong> (<em>int</em>) -- The coordinates of the text, left.</p></li>
+<li><p><strong>top</strong> (<em>int</em>) -- The coordinates of the text, top.</p></li>
+<li><p><strong>textColor</strong> (<em>tuple</em>) -- Color of text.</p></li>
+<li><p><strong>textSize</strong> (<em>int</em>) -- Font size of text.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Image with text added</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.unletterbox">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">unletterbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bbox</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">letterbox_scale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.unletterbox" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="defectdetector.detector.YoloxDetector.vis">
+<span class="sig-name descname"><span class="pre">vis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">srcimg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">letterbox_scale</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#defectdetector.detector.YoloxDetector.vis" title="Permalink to this definition"></a></dt>
+<dd><p>Visualize all defect information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dets</strong> (<em>ndarray</em>) -- Output of the Yolox model.</p></li>
+<li><p><strong>srcimg</strong> (<em>ndarray</em>) -- Input image.</p></li>
+<li><p><strong>letterbox_scale</strong> (<em>float</em>) -- Scaling ratio.</p></li>
+<li><p><strong>fps</strong> -- The fps.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Image containing defect information.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>res_img(ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="defectdetector.controller.html" class="btn btn-neutral float-left" title="defectdetector.controller package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="defectdetector.detector.yolox.html" class="btn btn-neutral float-right" title="defectdetector.detector.yolox package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, A&amp;F.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
